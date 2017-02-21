@@ -1,0 +1,25 @@
+{
+  "name": "specific_dispersion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rsoloff/Specific_Dispersion.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rsoloff/Specific_Dispersion/issues"
+  },
+  "homepage": "https://github.com/rsoloff/Specific_Dispersion#readme",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "morgan": "^1.8.1",
+    "pg-promise": "^5.5.8"
+  }
+}
