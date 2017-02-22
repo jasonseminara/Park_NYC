@@ -1,14 +1,14 @@
 var express = require('express');
+require('dotenv').config();
 
 var app = express();
 const bodyParser = require('body-parser');
 const pgp = require('pg-promise')();
-const db = pgp('postgres://johnchristie@localhost:5432/mydb')
+const db = pgp(process.env.DATABASE_URL);
 
 app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
-
 
 var handlebars = require('express-handlebars')
 	.create({ defaultLayout:'main' });
@@ -17,9 +17,7 @@ app.set('view engine', 'handlebars');
 
 app.set('port', process.env.PORT || 3000);
 
-app.get('/', function(req, res){
-	res.render('index');
-});
+
 
 app.get('/form', function(req, res){
 	res.render('form');
@@ -30,7 +28,20 @@ app.get('/zone_search', function(req, res){
 });
 
 app.get('/zones/:id', function(req, res){
+	// res.json(req.params)
+console.log(db)
 
+	db.any(`select *
+		from zones
+		where zone_number = 2`)
+	.then((data) => {
+		console.log(data);
+		res.json(data)
+	})
+	.catch(function(err){
+		res.json(err)
+
+	});
 });
 
 app.post('/form', function(req, res){
@@ -43,21 +54,23 @@ app.get('/success', function(req, res){
 	res.render('success');
 });
 
-
-//404
-app.use(function(req, res){
-	res.type('text/plain');
-	res.status(404);
-	res.send('404 - Not Found');
+app.get('/', function(req, res){
+	res.render('index');
 });
-
-//500
-app.use(function(err, req, res, next){
-	console.error(err.stack);
-	res.type('text/plain');
-	res.status(500);
-	res.send('500 - Server Error');
-});
+// //404
+// app.use(function(req, res){
+// 	res.type('text/plain');
+// 	res.status(404);
+// 	res.send('404 - Not Found');
+// });
+//
+// //500
+// app.use(function(err, req, res, next){
+// 	console.error(err.stack);
+// 	res.type('text/plain');
+// 	res.status(500);
+// 	res.send('500 - Server Error');
+// });
 
 app.listen(app.get('port'), function(){
 	console.log('Express started on http://localhost:'+app.get('port')+'; press Ctrl-C to terminate.');
