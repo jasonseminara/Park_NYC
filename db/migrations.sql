@@ -9,7 +9,8 @@ CREATE TABLE zones (
 );
 
 CREATE TABLE driver (
-	license VARCHAR
+	license VARCHAR,
+	zone_number INTEGER
 );
 
 INSERT INTO zones (zone_number, price, time_limit) VALUES
@@ -17,5 +18,5 @@ INSERT INTO zones (zone_number, price, time_limit) VALUES
   (1, 2.50, 3),
   (2, 3.00, 1);
 
-INSERT INTO driver (license) VALUES
-  ('NY:456');
+INSERT INTO driver (license, zone_number) VALUES
+  ('NY:456', 1);

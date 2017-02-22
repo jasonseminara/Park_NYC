@@ -1,8 +1,14 @@
 var express = require('express');
 
 var app = express();
+const bodyParser = require('body-parser');
+const pgp = require('pg-promise')();
+const db = pgp('postgres://johnchristie@localhost:5432/mydb')
 
 app.use(express.static('public'));
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
 
 var handlebars = require('express-handlebars')
 	.create({ defaultLayout:'main' });
@@ -19,15 +25,25 @@ app.get('/form', function(req, res){
 	res.render('form');
 });
 
+app.post('/form', function(req, res){
+  console.log(`zone: ${req.body.zone_number}; license: ${req.body.license}`);
+  db.none('INSERT INTO driver (license, zone_number) VALUES ($1,$2)', [req.body.license, req.body.zone_number]);
+  return res.redirect(303, '/success');
+});
 
-//custom 404 page
+app.get('/success', function(req, res){
+	res.render('success');
+});
+
+
+//404
 app.use(function(req, res){
 	res.type('text/plain');
 	res.status(404);
 	res.send('404 - Not Found');
 });
 
-//custom 500 page
+//500
 app.use(function(err, req, res, next){
 	console.error(err.stack);
 	res.type('text/plain');
