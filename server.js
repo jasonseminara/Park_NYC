@@ -27,7 +27,8 @@ app.get('/form', function(req, res){
 
 app.post('/form', function(req, res){
   console.log(`zone: ${req.body.zone_number}; license: ${req.body.license}`);
-  db.none('INSERT INTO driver (license, zone_number) VALUES ($1,$2)', [req.body.license, req.body.zone_number]);
+  //(zone_number, price, time_limit, plate_state, plate_number, duration, cgnumber)
+  db.none('INSERT INTO leases (zone_number, price, time_limit, plate_state, plate_number, duration, cgnumber) VALUES ($1,$2,$3,$4,$5,$6,$7)', [req.body.license, req.body.zone_number]);
   return res.redirect(303, '/success');
 });
 
