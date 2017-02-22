@@ -25,6 +25,10 @@ app.get('/form', function(req, res){
 	res.render('form');
 });
 
+app.get('/zone_search', function(req, res){
+	res.render('zone_search');
+});
+
 app.post('/form', function(req, res){
   console.log(`zone: ${req.body.zone_number}; license: ${req.body.license}`);
   //(zone_number, price, time_limit, plate_state, plate_number, duration, cgnumber)

@@ -27,7 +27,7 @@ INSERT INTO leases (zone_number, price, time_limit, plate_state, plate_number, d
   (1, 2.50, 3, 'NJ', 567, 3, 567),
   (2, 3.00, 1, 'NY', 788, 5, 981);
 
-INSERT INTO zones (
-  
-);
-
+INSERT INTO zones (zone_number, price, time_limit) VALUES
+  (1, 1, 1),
+  (2, 2, 2),
+  (3, 3, 3);
