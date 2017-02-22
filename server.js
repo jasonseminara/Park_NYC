@@ -1,9 +1,11 @@
 var express = require('express');
+require('dotenv').config()
+//var DATABASE_URL = require('dotenv');
 
 var app = express();
 const bodyParser = require('body-parser');
 const pgp = require('pg-promise')();
-const db = pgp('postgres://johnchristie@localhost:5432/mydb')
+const db = pgp(process.env.DATABASE_URL);
 
 app.use(express.static('public'));
 
