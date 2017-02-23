@@ -1,9 +1,15 @@
-const express = require('express');
-require('dotenv').config();
+'use strict';
+
+const express 		= require('express');
+const bodyParser 	= require('body-parser');
+const logger 			= require('morgan');
+const pgp					= require('pg-promise')();
+
+const isDev = !('NODE_ENV' in process.env) && require('dotenv').config() && true;
 
 const app = express();
-const bodyParser = require('body-parser');
-const pgp = require('pg-promise')();
+
+app.set('PORT', process.env.PORT || 3000);
 
 const db = pgp(process.env.DATABASE_URL);
 
@@ -17,18 +23,14 @@ const handlebars = require('express-handlebars')
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
-app.set('port', process.env.PORT || 3000);
-
-
-app.get('/form', (req, res) => {
-  res.render('form');
+app.get('/', (req, res) => {
+  res.render('index');
 });
 
 app.get('/zone_search', (req, res) => {
   res.render('zone_search');
 });
 
-<<<<<<< HEAD
 app.get('/zones/:id', function(req, res){
 	// res.json(req.params)
 	console.log(db);
@@ -43,24 +45,7 @@ app.get('/zones/:id', function(req, res){
 	.catch(function(err){
 		res.json(err);
 		console.log(err);
-	});
-=======
-app.get('/zones/:id', (req, res) => {
-  // res.json(req.params)
-  console.log(db);
-
-  db.any(`select *
-    from zones
-    where zone_number = 2`)
-    .then((data) => {
-      console.log(data);
-      res.json(data);
-    })
-  .catch((err) => {
-    res.json(err);
-  });
->>>>>>> b10b064613cedb41d62373960eda7beffb0ebe62
-});
+	});	
 
 app.post('/form', (req, res) => {
   console.log(`zone: ${req.body.zone_number}; license: ${req.body.price}`);
@@ -78,9 +63,6 @@ app.get('/success/:plate_number/:plate_state', (req, res) => {
     })
 });
 
-app.get('/', (req, res) => {
-  res.render('index');
-});
 // //404
 // app.use(function(req, res){
 //  res.type('text/plain');

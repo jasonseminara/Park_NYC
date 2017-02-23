@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rsoloff/Specific_Dispersion.git"
+    "url": "git+https://github.com/Specific-Dispersion/Park_NYC.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rsoloff/Specific_Dispersion/issues"
+    "url": "https://github.com/Specific-Dispersion/Park_NYC/issues"
   },
-  "homepage": "https://github.com/rsoloff/Specific_Dispersion#readme",
+  "homepage": "https://github.com/Specific-Dispersion/Park_NYC#readme",
   "dependencies": {
     "body-parser": "^1.16.1",
     "dotenv": "^4.0.0",

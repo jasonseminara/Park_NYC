@@ -16,7 +16,7 @@ $(document).ready(function() {
   console.log('I got it');
 };
 */
-var test = function(){
+/*var test = function(){
 
 console.log('connected')
-};
+};*/
