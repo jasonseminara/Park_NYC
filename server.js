@@ -7,6 +7,8 @@ const pgp = require('pg-promise')();
 
 const db = pgp(process.env.DATABASE_URL);
 
+const zones = require('./lib/zones.js');
+
 app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -47,11 +49,17 @@ app.get('/zones/:id', (req, res) => {
 app.post('/form', (req, res) => {
   console.log(`zone: ${req.body.zone_number}; license: ${req.body.price}`);
   db.none('INSERT INTO leases (zone_number, price, time_limit, plate_state, plate_number, duration, cgnumber) VALUES ($1,$2,$3,$4,$5,$6,$7)', [req.body.zone_number, req.body.price, req.body.time_limit, req.body.plate_state, req.body.plate_number, req.body.duration, req.body.cgnumber]);
-  return res.redirect(303, '/success');
+  return res.redirect(303, `/success/${req.body.plate_number}/${req.body.plate_state}`);
 });
 
-app.get('/success', (req, res) => {
-  res.render('success');
+app.get('/success/:plate_number/:plate_state', (req, res) => {
+  db.one(`SELECT * FROM leases WHERE plate_number = $1 AND plate_state = $2`, [req.params.plate_number, req.params.plate_state])
+    .then((data) => {
+    console.log(data)
+    //return data.id
+    })
+    //console.log(data)
+  res.render('success', {fish: zone });
 });
 
 app.get('/', (req, res) => {
