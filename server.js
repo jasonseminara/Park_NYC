@@ -51,12 +51,17 @@ app.post('/form', (req, res) => {
 });
 
 app.get('/success/:plate_number/:plate_state', (req, res) => {
-  db.any(`SELECT * FROM leases WHERE plate_number = $1 AND plate_state = $2`, [req.params.plate_number, req.params.plate_state])
+  const data = db.any(`SELECT * FROM leases WHERE plate_number = $1 AND plate_state = $2`, [req.params.plate_number, req.params.plate_state])
     .then((data) => {
-    console.log(data)
+    const zone = data[0]["zone_number"];
+    const price = data[0]["price"];
+    const time = data[0]["duration"]
+    //console.log(reservation);
+    //console.log(data)
     //return data.id
+    res.render('success',{zone, price, time});
     })
-  res.render('success');
+    //console.log(data);
 });
 
 app.get('/', (req, res) => {
