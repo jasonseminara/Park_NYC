@@ -51,7 +51,7 @@ app.post('/form', (req, res) => {
 });
 
 app.get('/success/:plate_number/:plate_state', (req, res) => {
-  const data = db.one(`SELECT * FROM leases WHERE plate_number = $1 AND plate_state = $2`, [req.params.plate_number, req.params.plate_state])
+  const data = db.one(`SELECT zone_number, price, duration FROM leases WHERE plate_number = $1 AND plate_state = $2`, [req.params.plate_number, req.params.plate_state])
     .then((data) => {
       var zone = data.zone_number;
       var price = data.price;
