@@ -1,11 +1,14 @@
-const express = require('express');
-require('dotenv').config();
+'use strict';
+
+// all dependencies go here
+const express     = require('express');
+const bodyParser  = require('body-parser');
+const logger      = require('morgan');
+
+const isDev = !('NODE_ENV' in process.env) && require('dotenv').config() && true;
 
 const app = express();
-const bodyParser = require('body-parser');
-const pgp = require('pg-promise')();
-
-const db = pgp(process.env.DATABASE_URL);
+app.set('PORT', process.env.PORT || 3000);
 
 app.use(express.static('public'));
 
@@ -17,7 +20,13 @@ const handlebars = require('express-handlebars')
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
-app.set('port', process.env.PORT || 3000);
+
+// go get the routes I need for this app
+app.use('/zones', require('./routes/zones'));
+
+
+
+///////////////////
 
 
 app.get('/form', (req, res) => {
@@ -28,21 +37,7 @@ app.get('/zone_search', (req, res) => {
   res.render('zone_search');
 });
 
-app.get('/zones/:id', (req, res) => {
-  // res.json(req.params)
-  console.log(db);
 
-  db.any(`select *
-    from zones
-    where zone_number = 2`)
-    .then((data) => {
-      console.log(data);
-      res.json(data);
-    })
-  .catch((err) => {
-    res.json(err);
-  });
-});
 
 app.post('/form', (req, res) => {
   console.log(`zone: ${req.body.zone_number}; license: ${req.body.price}`);
@@ -78,6 +73,6 @@ app.get('/', (req, res) => {
 //  res.send('500 - Server Error');
 // });
 
-app.listen(app.get('port'), () => {
-  console.log(`Express started on http://localhost: ${app.get('port')}; press Ctrl-C to terminate.`);
+app.listen(app.get('PORT'), () => {
+  console.log(`Express started on http://localhost: ${app.get('PORT')}; press Ctrl-C to terminate.`);
 });

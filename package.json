@@ -1,14 +1,15 @@
 {
   "name": "specific_dispersion",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "NYC's premiere parking system",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rsoloff/Specific_Dispersion.git"
+    https://github.com/Specific-Dispersion/Park_NYC.git
+    "url": "git+https://github.com/Specific-Dispersion/Park_NYC.git"
   },
   "author": "",
   "license": "ISC",
