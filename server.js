@@ -1,6 +1,5 @@
 var express = require('express');
 require('dotenv').config()
-//var DATABASE_URL = require('dotenv');
 
 var app = express();
 const bodyParser = require('body-parser');
