@@ -1,17 +1,14 @@
 'use strict';
 
-const express 		= require('express');
-const bodyParser 	= require('body-parser');
-const logger 			= require('morgan');
-const pgp					= require('pg-promise')();
+// all dependencies go here
+const express     = require('express');
+const bodyParser  = require('body-parser');
+const logger      = require('morgan');
 
 const isDev = !('NODE_ENV' in process.env) && require('dotenv').config() && true;
 
 const app = express();
-
 app.set('PORT', process.env.PORT || 3000);
-
-const db = pgp(process.env.DATABASE_URL);
 
 app.use(express.static('public'));
 
@@ -23,29 +20,24 @@ const handlebars = require('express-handlebars')
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
-app.get('/', (req, res) => {
-  res.render('index');
+
+// go get the routes I need for this app
+app.use('/zones', require('./routes/zones'));
+
+
+
+///////////////////
+
+
+app.get('/form', (req, res) => {
+  res.render('form');
 });
 
 app.get('/zone_search', (req, res) => {
   res.render('zone_search');
 });
 
-app.get('/zones/:id', function(req, res){
-	// res.json(req.params)
-	console.log(db);
-	console.log(req.params.id)
-	db.any(`SELECT *
-		FROM zones
-		WHERE zone_number = ${req.params.id}`)
-	.then((data) => {
-		console.log(data);
-		res.json(data)
-	})
-	.catch(function(err){
-		res.json(err);
-		console.log(err);
-	});	
+
 
 app.post('/form', (req, res) => {
   console.log(`zone: ${req.body.zone_number}; license: ${req.body.price}`);
@@ -63,6 +55,9 @@ app.get('/success/:plate_number/:plate_state', (req, res) => {
     })
 });
 
+app.get('/', (req, res) => {
+  res.render('index');
+});
 // //404
 // app.use(function(req, res){
 //  res.type('text/plain');
@@ -78,6 +73,6 @@ app.get('/success/:plate_number/:plate_state', (req, res) => {
 //  res.send('500 - Server Error');
 // });
 
-app.listen(app.get('port'), () => {
-  console.log(`Express started on http://localhost: ${app.get('port')}; press Ctrl-C to terminate.`);
+app.listen(app.get('PORT'), () => {
+  console.log(`Express started on http://localhost: ${app.get('PORT')}; press Ctrl-C to terminate.`);
 });

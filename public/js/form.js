@@ -5,6 +5,7 @@ $(document).ready(function() {
     const zone_number = $(this).val()
     $.get('/zones/' + zone_number, function(data) {
       console.log(data[0].price);
+      console.log(data[0].zone_number);
     });
   });
 });
