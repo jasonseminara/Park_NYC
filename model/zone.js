@@ -7,7 +7,6 @@ const config = {
   user:     process.env.DB_USER
 };
 
-
 const db = pgp(config);
 
 module.exports = {
