@@ -29,18 +29,18 @@ app.get('/zone_search', function(req, res){
 
 app.get('/zones/:id', function(req, res){
 	// res.json(req.params)
-console.log(db)
-
-	db.any(`select *
-		from zones
-		where zone_number = 2`)
+	console.log(db);
+	console.log(req.params.id)
+	db.any(`SELECT *
+		FROM zones
+		WHERE zone_number = ${req.params.id}`)
 	.then((data) => {
 		console.log(data);
 		res.json(data)
 	})
 	.catch(function(err){
-		res.json(err)
-
+		res.json(err);
+		console.log(err);
 	});
 });
 

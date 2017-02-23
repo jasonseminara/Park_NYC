@@ -3,7 +3,9 @@ $(document).ready(function() {
   console.log('connected');
   $('#zone_number').blur(function(){
     const zone_number = $(this).val()
-    $.get()
+    $.get('/zones/' + zone_number, function(data) {
+      console.log(data[0].price);
+    });
   });
 });
 
@@ -19,6 +21,6 @@ var test = function(){
 console.log('connected')
 };
 
-const zones {
+/*const zones {
 	"1": [1.5, 2],
-}
+}*/
