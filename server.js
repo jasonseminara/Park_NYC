@@ -45,7 +45,7 @@ app.get('/zones/:id', (req, res) => {
 });
 
 app.post('/form', (req, res) => {
-  //console.log(`zone: ${req.body.zone_number}; license: ${req.body.price}`);
+  console.log(`zone: ${req.body.zone_number}; license: ${req.body.price}`);
   db.none('INSERT INTO leases (zone_number, price, time_limit, plate_state, plate_number, duration, cgnumber) VALUES ($1,$2,$3,$4,$5,$6,$7)', [req.body.zone_number, req.body.price, req.body.time_limit, req.body.plate_state, req.body.plate_number, req.body.duration, req.body.cgnumber]);
   return res.redirect(303, `/success/${req.body.plate_number}/${req.body.plate_state}`);
 });
@@ -56,7 +56,7 @@ app.get('/success/:plate_number/:plate_state', (req, res) => {
       var zone = data.zone_number;
       var price = data.price;
       var time = data.duration;
-      res.render('success', { zone, price, time });
+      res.render('success', {zone, price, time});
     })
 });
 
