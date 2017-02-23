@@ -7,8 +7,6 @@ const pgp = require('pg-promise')();
 
 const db = pgp(process.env.DATABASE_URL);
 
-const zones = require('./lib/zones.js');
-
 app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -53,13 +51,12 @@ app.post('/form', (req, res) => {
 });
 
 app.get('/success/:plate_number/:plate_state', (req, res) => {
-  db.one(`SELECT * FROM leases WHERE plate_number = $1 AND plate_state = $2`, [req.params.plate_number, req.params.plate_state])
+  db.any(`SELECT * FROM leases WHERE plate_number = $1 AND plate_state = $2`, [req.params.plate_number, req.params.plate_state])
     .then((data) => {
     console.log(data)
     //return data.id
     })
-    //console.log(data)
-  res.render('success', {fish: zone });
+  res.render('success');
 });
 
 app.get('/', (req, res) => {
