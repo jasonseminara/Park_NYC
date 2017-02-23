@@ -23,21 +23,22 @@ app.set('view engine', 'handlebars');
 
 // go get the routes I need for this app
 app.use('/zones', require('./routes/zones'));
+app.use('/leases', require('./routes/leases'));
 
 
 
 ///////////////////
 
 
-app.get('/form', (req, res) => {
-  res.render('form');
-});
+
 
 app.get('/zone_search', (req, res) => {
   res.render('zone_search');
 });
 
-
+app.get('/form', (req, res) => {
+  res.render('form');
+});
 
 app.post('/form', (req, res) => {
   console.log(`zone: ${req.body.zone_number}; license: ${req.body.price}`);
@@ -45,15 +46,6 @@ app.post('/form', (req, res) => {
   return res.redirect(303, `/success/${req.body.plate_number}/${req.body.plate_state}`);
 });
 
-app.get('/success/:plate_number/:plate_state', (req, res) => {
-  const data = db.one(`SELECT zone_number, price, duration FROM leases WHERE plate_number = $1 AND plate_state = $2`, [req.params.plate_number, req.params.plate_state])
-    .then((data) => {
-      var zone = data.zone_number;
-      var price = data.price;
-      var time = data.duration;
-      res.render('success', {zone, price, time});
-    })
-});
 
 app.get('/', (req, res) => {
   res.render('index');
