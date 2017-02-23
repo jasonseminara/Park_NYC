@@ -1,9 +1,5 @@
 var express = require('express');
-<<<<<<< HEAD
-require('dotenv').config()
-=======
 require('dotenv').config();
->>>>>>> 1c2a03c69a96b00e5e54788e896703e5917805b9
 
 var app = express();
 const bodyParser = require('body-parser');

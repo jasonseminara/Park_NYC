@@ -19,9 +19,4 @@ var test = function(){
 console.log('connected')
 };
 
-<<<<<<< HEAD
-=======
-const zones {
-	"1": [1.5, 2],
-}
->>>>>>> 1c2a03c69a96b00e5e54788e896703e5917805b9
+
