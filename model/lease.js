@@ -1,35 +1,4 @@
-const pgp = require('pg-promise')();
-
-const config = {
-  host:     process.env.DB_HOST,
-  port:     process.env.DB_PORT,
-  database: process.env.DB_NAME,
-  user:     process.env.DB_USER
-};
-
-const db = pgp(config);
-
-
-/*app.get('/success/:plate_number/:plate_state', (req, res) => {
-  const data = db.one(`
-    SELECT
-      zone_number,
-      price,
-      duration
-    FROM leases
-    WHERE plate_number = $/plate_number/
-      AND plate_state = $/plate_state/
-    `, req.params)
-    .then((data) => {
-      var zone = data.zone_number;
-      var price = data.price;
-      var time = data.duration;
-      res.render('success', {zone, price, time});
-    })
-});*/
-
-
-
+const db = require('./dbconnection.js');
 
 /* TODO: make the lease search based on user role
   (eg, Driver gets only Driver leases, plates) */

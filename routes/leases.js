@@ -19,4 +19,11 @@ leases.get('/:id', model.getOneLease);
 /* /lease/id GET ALL leases */
 leases.get('/', model.getMyLeases)
 
+//temporary fix
+leases.get('/success/:plate_number/:plate_state', (req, res) => {
+
+      res.render('success');
+
+});
+
 module.exports = leases;
