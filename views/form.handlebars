@@ -1,19 +1,17 @@
 <form method="post" action="/form">
 
-    <div>
-      <label for="zone_number">Zone:</label>
-      <input type="text" id="zone_number" name="zone_number" />
-    </div>
-
-  <!--<div>
-     <label for="price">Price:</label>
-     <input type="text" id="price" name="price" />
-   </div>
-
   <div>
-     <label for="time_limit">Time Limit:</label>
-     <input type="text" id="time_limit" name="time_limit" />
-   </div>-->
+    <label for="zone_number">Zone:</label>
+    <input type="text" id="zone_number" name="zone_number" />
+  </div>
+
+  <div class="price">
+
+  </div>
+
+  <div class="time_limit">
+
+  </div>
 
   <div>
      <label for="plate_state">Plate State:</label>
@@ -35,7 +33,18 @@
         <input type="text" id="cgnumber" name="cgnumber" />
       </div>
 
-   <button type="submit">Submit</button>
+      <div>
+        <input type="hidden" id="price" name="price" value="">
+      </div>
 
+      <div>
+        <input type="hidden" id="time_limit" name="time_limit" value="">
+      </div>
+
+      <div class="total_price">
+
+      </div>
+
+   <button type="submit">Submit</button>
 
   </form>
