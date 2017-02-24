@@ -4,7 +4,7 @@ $(document).ready(function() {
   $('#zone_number').blur(function(){
     const zone_number = $(this).val();
     $.get('/zones/' + zone_number, function(data) {
-      var $price = $('<p>').html('Zone Price Per Hour: ' + data[0].price);
+      var $price = $('<p>').html('Zone Price Per Hour: $' + data[0].price);
       var $timeLimit = $('<p>').html('Zone Time Limit: ' + data[0].time_limit);
       $('.price').empty();
       $('.price').append($price);
