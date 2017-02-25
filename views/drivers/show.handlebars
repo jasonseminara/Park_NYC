@@ -1,1 +1,24 @@
-<h3>This is the leases show page</h3>
+<h3>This is the lease that you selected</h3>
+
+<table>
+  <tr>
+    <th>Lease ID</th>
+    <th>Zone Number</th>
+    <th>Price</th>
+    <th>Time Limit</th>
+    <th>Plate State</th>
+    <th>Plate Number</th>
+  </tr>
+
+  <tr>
+    <td>{{data.lease_id}}</td>
+    <td>{{data.zone_number}}</td>
+    <td>{{data.price}}</td>
+    <td>{{data.time_limit}}</td>
+    <td>{{data.plate_state}}</td>
+    <td>{{data.plate_number}}</td>
+  </tr>
+  <div><a href="/drivers/{{data.user_id}}">Return to Listing of all your leases</a></div>
+
+  <div><a href="/drivers/{{data.user_id}}/{{data.lease_id}}/edit">Edit this lease</a></div>
+

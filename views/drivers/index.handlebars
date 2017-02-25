@@ -2,8 +2,11 @@
 <br/>
 <h3>My Leases</h3>
 
+<div><a href="/drivers/{{userid}}/new">Create a new lease</a></div>
+
 <table>
   <tr>
+    <th>Lease ID</th>
     <th>Zone Number</th>
     <th>Price</th>
     <th>Time Limit</th>
@@ -14,6 +17,7 @@
 {{#each data}}
 
   <tr>
+    <td><a href="/drivers/{{this.user_id}}/{{this.lease_id}}">{{this.lease_id}}</a></td>
     <td>{{this.zone_number}}</td>
     <td>{{this.price}}</td>
     <td>{{this.time_limit}}</td>
