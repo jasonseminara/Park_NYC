@@ -1,20 +1,20 @@
 /* Our lease router */
-const leases = require('express').Router();
+const drivers = require('express').Router();
 //const model = require('../model/lease');
 
 /* GET /leases INDEX; display a list of leases  */
-leases.get('/', (req, res) => {
-  res.render('./leases/index');
+drivers.get('/:userid', (req, res) => {
+  res.render('./drivers/index');
 })
 
 /* GET /leases/new NEW display form to create lease */
-leases.get('/new', (req, res) => {
-  res.render('./leases/new')
+drivers.get('/:userid/new', (req, res) => {
+  res.render('./drivers/new')
 });
 
 /* GET /leases SHOW display specific lease with countdown */
-leases.get('/:id', (req, res) => {
-  res.render('./leases/show')
+drivers.get('/:userid/:id', (req, res) => {
+  res.render('./drivers/show')
 });
 
 
@@ -25,8 +25,8 @@ leases.get('/:id', (req, res) => {
 
 
 /* GET /leases/:id/edit EDIT display form to edit lease*/
-leases.get('/:id/edit', (req, res) => {
-  res.render('./leases/edit');
+drivers.get('/:userid/:id/edit', (req, res) => {
+  res.render('./drivers/edit');
 });
 
 // /* PUT /leases/:id UPDATE DB EDIT update specific lease */
@@ -42,4 +42,4 @@ leases.get('/:id/edit', (req, res) => {
 
 
 
-module.exports = leases;
+module.exports = drivers;
