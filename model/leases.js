@@ -21,7 +21,6 @@ module.exports = {
       SELECT
         zone_number,
         price,
-        price,
         time_limit,
         plate_state,
         plate_number
@@ -30,8 +29,8 @@ module.exports = {
     `, req.params.userid)
 
     .then((data) => {
-        console.log(data);
-        res.json(data);
+        //console.log(data);
+        res.render('./drivers/index', {data: data});
       })
     .catch((err) => {
       res.json(err);

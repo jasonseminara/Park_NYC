@@ -1,6 +1,26 @@
 <h1>Leases Index</h1>
 <br/>
-<h3>Active Leases</h3>
-<h3>Past Leases</h3>
-<br/>
+<h3>My Leases</h3>
+
+<table>
+  <tr>
+    <th>Zone Number</th>
+    <th>Price</th>
+    <th>Time Limit</th>
+    <th>Plate State</th>
+    <th>Plate Number</th>
+  </tr>
+
+{{#each data}}
+
+  <tr>
+    <td>{{this.zone_number}}</td>
+    <td>{{this.price}}</td>
+    <td>{{this.time_limit}}</td>
+    <td>{{this.plate_state}}</td>
+    <td>{{this.plate_number}}</td>
+  </tr>
+
+{{/each}}
+
 
