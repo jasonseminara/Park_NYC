@@ -24,29 +24,29 @@ app.set('view engine', 'handlebars');
 
 
 // go get the routes I need for this app
-app.use('/zones', require('./routes/zones'));
+//app.use('/zones', require('./routes/zones'));
 app.use('/leases', require('./routes/leases'));
 
+app.get('/', (req, res) => {
+  res.render('index');
+});
 
+// app.get('/leases/tomato', (req, res) => {
+// 	res.send('still onserver')
+// })
 
 ///////////////////
 
 
+// app.post('/form', (req, res) => {
+//   console.log(`zone: ${req.body.zone_number}; license: ${req.body.price}`);
+//   db.none('INSERT INTO leases (zone_number, price, time_limit, plate_state, plate_number, duration, cgnumber) VALUES ($1,$2,$3,$4,$5,$6,$7)', [req.body.zone_number, req.body.price, req.body.time_limit, req.body.plate_state, req.body.plate_number, req.body.duration, req.body.cgnumber]);
+//   res.redirect(303, 'success'/*, `/success/${req.body.plate_number}/${req.body.plate_state}`*/);
+// });
 
-
-app.get('/zone_search', (req, res) => {
-  res.render('zone_search');
-});
-
-app.post('/form', (req, res) => {
-  console.log(`zone: ${req.body.zone_number}; license: ${req.body.price}`);
-  db.none('INSERT INTO leases (zone_number, price, time_limit, plate_state, plate_number, duration, cgnumber) VALUES ($1,$2,$3,$4,$5,$6,$7)', [req.body.zone_number, req.body.price, req.body.time_limit, req.body.plate_state, req.body.plate_number, req.body.duration, req.body.cgnumber]);
-  res.redirect(303, 'success'/*, `/success/${req.body.plate_number}/${req.body.plate_state}`*/);
-});
-
-app.get('/success', (req, res) => {
-  res.render('success');
-});
+// app.get('/success', (req, res) => {
+//   res.render('success');
+// });
 
 // app.get('/success/:plate_number/:plate_state', (req, res) => {
 //   const data = db.one(`
@@ -67,9 +67,6 @@ app.get('/success', (req, res) => {
 // });
 
 
-app.get('/', (req, res) => {
-  res.render('index');
-});
 // //404
 // app.use(function(req, res){
 //  res.type('text/plain');

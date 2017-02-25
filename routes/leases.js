@@ -1,29 +1,45 @@
 /* Our lease router */
 const leases = require('express').Router();
-const model = require('../model/lease');
+//const model = require('../model/lease');
 
-// /leases/new --> shows a create lease form
+/* GET /leases INDEX; display a list of leases  */
+leases.get('/', (req, res) => {
+  res.render('./leases/index');
+})
+
+/* GET /leases/new NEW display form to create lease */
 leases.get('/new', (req, res) => {
-  res.render('form');
+  res.render('./leases/new')
 });
 
-// /leases/edit --> shows a edit lease form
-leases.get('/edit', (req, res) => {
-  res.render('form');
+/* GET /leases SHOW display specific lease with countdown */
+leases.get('/:id', (req, res) => {
+  res.render('./leases/show')
 });
 
-/* /lease/id GET request */
-leases.get('/:id', model.getOneLease);
 
-/**/
-/* /lease/id GET ALL leases */
-leases.get('/', model.getMyLeases)
+// /* POST /leases CREATE DB INSERT create new lease*/
+// leases.post('/', (req, res) => {
+ 
+// });
 
-//temporary fix
-leases.get('/success/:plate_number/:plate_state', (req, res) => {
 
-      res.render('success');
-
+/* GET /leases/:id/edit EDIT display form to edit lease*/
+leases.get('/:id/edit', (req, res) => {
+  res.render('./leases/edit');
 });
+
+// /* PUT /leases/:id UPDATE DB EDIT update specific lease */
+// leases.put('/:id', (req, res) => {
+
+// });
+
+// /* DELETE /leases/:id DELETE delete a specific lease */
+// leases.delete('/id', (req, res) => {
+
+// });
+
+
+
 
 module.exports = leases;
