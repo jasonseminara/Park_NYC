@@ -4,7 +4,7 @@ const db = require('./dbconnection.js');
 module.exports = {
   getUser(req, res, next){
     db.one(`
-      SELECT *
+      SELECT user_id
       FROM users
       WHERE email = $1
     `, [req.body.email])
