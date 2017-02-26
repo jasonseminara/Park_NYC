@@ -2,16 +2,19 @@
 const drivers = require('express').Router();
 /* Connect to model */
 const model = require('../model/leases');
+const zones = require('../model/zones');
 
-/* GET /leases INDEX; display a list of leases  */
+
+/* GET INDEX display a list of dirver's leases  */
 drivers.get('/:userid', model.getMyLeases);
 
-/* GET /leases/new NEW display form to create lease */
+/* GET NEW display form to create a lease */
 drivers.get('/:userid/new', (req, res) => {
-  res.render('./drivers/new')
+  
+  res.render('./drivers/new', {zones: zones[1]})
 });
 
-/* GET /leases SHOW display specific lease with countdown */
+/* GET SHOW display specific lease with countdown */
 drivers.get('/:userid/:id', model.getOneLease);
 
 
