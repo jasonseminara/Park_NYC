@@ -36,7 +36,5 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
-#ignore packages installed by npm
-node_modules
-
+_config.js
 .env

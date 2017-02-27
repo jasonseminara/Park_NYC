@@ -2,7 +2,7 @@ const db = require('./dbconnection.js');
 
 /*  */
 module.exports = {
-  getMyLeases(req, res, next){
+  getMyLeases(req, res, next) {
     db.any(`
       SELECT
         user_id,
@@ -17,15 +17,14 @@ module.exports = {
     `, req.params.userid)
 
     .then((data) => {
-        //console.log(data);
-        const userid = data[0].user_id;
-        res.render('./drivers/index', {data: data, userid});
-      })
+      res.render('./drivers/index', { data, userid: data[0].user_id });
+      next();
+    })
     .catch((err) => {
       res.json(err);
     });
   },
-  getOneLease(req, res, next){
+  getOneLease(req, res, next) {
     db.one(`
       SELECT
         user_id,
@@ -40,14 +39,14 @@ module.exports = {
     `, req.params.id)
 
     .then((data) => {
-        //console.log(data);
-        res.render('./drivers/show', {data: data});
-      })
+      res.render('./drivers/show', { data });
+      next();
+    })
     .catch((err) => {
       res.json(err);
     });
   },
-  addLease(req, res, next){
+  addLease(req, res, next) {
     db.none(`
       INSERT INTO leases
         (user_id,
@@ -60,16 +59,17 @@ module.exports = {
       VALUES
         ($1,$2,$3,$4,$5,$6,$7)`,
       [req.params.userid,
-      req.body.zone_number,
-      req.body.price,
-      req.body.time_limit,
-      req.body.plate_state,
-      req.body.plate_number,
-      req.body.duration])
+        req.body.zone_number,
+        req.body.price,
+        req.body.time_limit,
+        req.body.plate_state,
+        req.body.plate_number,
+        req.body.duration])
     .then((data) => {
-        console.log(data);
-        res.redirect(303, '/drivers/:userid');
-      })
+      console.log(data);
+      res.redirect(303, '/drivers/:userid');
+      next();
+    })
     .catch((err) => {
       res.json(err);
     });

@@ -1,0 +1,15 @@
+extends: airbnb
+installedESLint: true
+plugins:
+  - import
+rules:
+  strict: 0
+  global-require: 0
+  key-spacing:
+    - error
+    - align:
+        value
+  no-multi-spaces:
+    - error
+    - exceptions:
+        VariableDeclarator: true
