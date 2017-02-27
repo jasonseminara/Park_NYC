@@ -47,4 +47,28 @@ module.exports = {
       res.json(err);
     });
   },
+  // addLease(req, res, next){
+  //   db.none(`
+  //     INSERT INTO leases
+  //       (zone_number,
+  //       price,
+  //       time_limit,
+  //       plate_state,
+  //       plate_number,
+  //       duration)
+  //     VALUES
+  //       ($1,$2,$3,$4,$5,$6,$7)`,
+  //     [req.body.zone_number,
+  //     req.body.price,
+  //     req.body.time_limit,
+  //     req.body.plate_state,
+  //     req.body.duration])
+  //   .then(data) => {
+  //       //console.log(data);
+  //       res.redirect(303, '/:userid');
+  //     })
+  //   .catch((err) => {
+  //     res.json(err);
+  //   });
+  // },
 };

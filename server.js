@@ -24,7 +24,7 @@ app.set('view engine', 'handlebars');
 
 
 // go get the routes I need for this app
-//app.use('/zones', require('./routes/zones'));
+app.use('/zones', require('./routes/zones'));
 app.use('/drivers', require('./routes/drivers'));
 app.use('/login', require('./routes/login'));
 

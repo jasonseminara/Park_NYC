@@ -2,7 +2,7 @@
 const drivers = require('express').Router();
 /* Connect to model */
 const model = require('../model/leases');
-const zones = require('../model/zones');
+const zones = require('../model/zone');
 
 
 /* GET INDEX display a list of dirver's leases  */
@@ -18,10 +18,9 @@ drivers.get('/:userid/new', (req, res) => {
 drivers.get('/:userid/:id', model.getOneLease);
 
 
-// /* POST /leases CREATE DB INSERT create new lease*/
-// leases.post('/', (req, res) => {
- 
-// });
+/* POST /leases CREATE DB INSERT create new lease*/
+// drivers.post('/:userid', model.addLease);
+
 
 
 /* GET /leases/:id/edit EDIT display form to edit lease*/
