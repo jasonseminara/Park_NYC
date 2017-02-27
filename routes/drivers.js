@@ -11,7 +11,7 @@ drivers.get('/:userid', model.getMyLeases);
 /* GET NEW display form to create a lease */
 drivers.get('/:userid/new', (req, res) => {
   console.log(req.params.userid);
-  res.render('./drivers/new', {zones: zones[1]})
+  res.render('./drivers/new', {userid: req.params.userid})
 });
 
 /* GET SHOW display specific lease with countdown */

@@ -40,7 +40,6 @@ module.exports = {
     `, req.params.id)
 
     .then((data) => {
-        //console.log(data);
         res.render('./drivers/show', {data: data});
       })
     .catch((err) => {
@@ -67,8 +66,7 @@ module.exports = {
       req.body.plate_number,
       req.body.duration])
     .then((data) => {
-        console.log(data);
-        res.redirect(303, '/drivers/:userid');
+        res.redirect(303, `/drivers/${req.params.userid}`);
       })
     .catch((err) => {
       res.json(err);

@@ -33,9 +33,6 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-// app.get('/leases/tomato', (req, res) => {
-// 	res.send('still onserver')
-// })
 
 ///////////////////
 
@@ -50,39 +47,7 @@ app.get('/', (req, res) => {
 //   res.render('success');
 // });
 
-// app.get('/success/:plate_number/:plate_state', (req, res) => {
-//   const data = db.one(`
-//     SELECT
-//       zone_number,
-//       price,
-//       duration
-//     FROM leases
-//     WHERE plate_number = $/plate_number/
-//       AND plate_state = $/plate_state/
-//     `, req.params)
-//     .then((data) => {
-//       var zone = data.zone_number;
-//       var price = data.price;
-//       var time = data.duration;
-//       res.render('success', {zone, price, time});
-//     })
-// });
 
-
-// //404
-// app.use(function(req, res){
-//  res.type('text/plain');
-//  res.status(404);
-//  res.send('404 - Not Found');
-// });
-//
-// //500
-// app.use(function(err, req, res, next){
-//  console.error(err.stack);
-//  res.type('text/plain');
-//  res.status(500);
-//  res.send('500 - Server Error');
-// });
 
 app.listen(app.get('PORT'), () => {
   console.log(`Express started on http://localhost: ${app.get('PORT')}; press Ctrl-C to terminate.`);
