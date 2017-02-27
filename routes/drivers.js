@@ -10,7 +10,7 @@ drivers.get('/:userid', model.getMyLeases);
 
 /* GET NEW display form to create a lease */
 drivers.get('/:userid/new', (req, res) => {
-  
+  console.log(req.params.userid);
   res.render('./drivers/new', {zones: zones[1]})
 });
 
@@ -19,7 +19,7 @@ drivers.get('/:userid/:id', model.getOneLease);
 
 
 /* POST /leases CREATE DB INSERT create new lease*/
-// drivers.post('/:userid', model.addLease);
+drivers.post('/:userid', model.addLease);
 
 
 
