@@ -37,9 +37,11 @@ INSERT INTO users (email, password, payment_info) VALUES
   ('jason@ga', 'password4', 234567);
 
 INSERT INTO zones (zone_number, price, time_limit) VALUES
-  (5, 1, 1),
+  (1, 2, 2),
   (2, 2, 2),
-  (3, 3, 3);
+  (3, 3, 3),
+  (4, 3, 3),
+  (5, 1, 1);
 
 INSERT INTO leases (user_id, zone_number, price, time_limit, plate_state, plate_number, duration) VALUES
   ( 1, 1, 2.50, 3, 'NY', 45667, 1),
