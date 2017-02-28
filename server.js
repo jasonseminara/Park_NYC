@@ -27,6 +27,7 @@ app.set('view engine', 'handlebars');
 app.use('/zones', require('./routes/zones'));
 app.use('/drivers', require('./routes/drivers'));
 app.use('/login', require('./routes/login'));
+app.use('/api', require('./routes/api'));
 
 
 app.get('/', (req, res) => {
@@ -34,18 +35,7 @@ app.get('/', (req, res) => {
 });
 
 
-///////////////////
 
-
-// app.post('/form', (req, res) => {
-//   console.log(`zone: ${req.body.zone_number}; license: ${req.body.price}`);
-//   db.none('INSERT INTO leases (zone_number, price, time_limit, plate_state, plate_number, duration, cgnumber) VALUES ($1,$2,$3,$4,$5,$6,$7)', [req.body.zone_number, req.body.price, req.body.time_limit, req.body.plate_state, req.body.plate_number, req.body.duration, req.body.cgnumber]);
-//   res.redirect(303, 'success'/*, `/success/${req.body.plate_number}/${req.body.plate_state}`*/);
-// });
-
-// app.get('/success', (req, res) => {
-//   res.render('success');
-// });
 
 
 

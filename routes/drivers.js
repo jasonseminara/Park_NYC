@@ -10,7 +10,7 @@ drivers.get('/:userid', model.getMyLeases);
 
 /* GET NEW display form to create a lease */
 drivers.get('/:userid/new', (req, res) => {
-  console.log(req.params.userid);
+  console.log(req);
   res.render('./drivers/new', {userid: req.params.userid})
 });
 
