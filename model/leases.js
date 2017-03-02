@@ -17,7 +17,6 @@ module.exports = {
     `, req.params.userid)
 
     .then((data) => {
-        //console.log(data);
         const userid = data[0].user_id;
         res.render('./drivers/index', {data: data, userid});
       })
